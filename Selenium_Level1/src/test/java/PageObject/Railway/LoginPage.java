@@ -11,6 +11,10 @@ public class LoginPage extends GeneralPage{
     private final By _btnLogin = By.xpath("//input[@value='Login']");
     private final By _lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
 
+    private final By _ChangePassword = By.xpath("//div[@id='menu']//a[@href='/Account/ChangePassword.cshtml']");
+    public WebElement getChangePassword(){
+        return Constant.WEBDRIVER.findElement(_ChangePassword);
+    }
     //Elements
     public WebElement getTxtUsername(){
         return Constant.WEBDRIVER.findElement(_txtUsername);
@@ -24,15 +28,16 @@ public class LoginPage extends GeneralPage{
     public WebElement getLblLoginErrorMsg(){
         return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
     }
-
+    public void clickChangePassword() {
+        Constant.WEBDRIVER.findElement(_ChangePassword).click();
+    }
     //Methods: login method returns HomePage
     public HomePage login(String username, String password){
         //Submit login credentials: there are LoginPage's WebElements
         this.getTxtUsername().sendKeys(username);
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
-
-        //Land on Home page
         return new HomePage();
     }
+
 }
